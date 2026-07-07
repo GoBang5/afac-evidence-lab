@@ -1,0 +1,2 @@
+# Agent V0 and repository scripts use Python standard-library modules only.
+# Preprocessing still depends on external system tools and local MinerU/DocPreprocess code as documented in progress notes.
