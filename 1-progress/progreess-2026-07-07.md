@@ -10,6 +10,7 @@ This file keeps only handoff-useful facts: environment, data shape, key decision
 - generated outputs: `processed_data/`, ignored by Git
 - Git branch: `main`
 - GitHub remote: `git@github-afac2026-4:AFAC2026-4/4.git`
+- GitHub tracking: local `main` tracks `origin/main`
 - SSH auth: deploy key alias `github-afac2026-4`; private key is local only and not tracked
 - model policy: default dev/eval may use GLM or user-specified models from `/public/home/zhangfanjin/zhangnianhao/.env`; do not call Qwen unless the user explicitly authorizes it
 
@@ -251,8 +252,10 @@ Results:
 - initial local commit: `92fea56 Initial project snapshot`
 - auth-check commit: `d51cbd1 Record GitHub push auth check`
 - deploy-key setup commit: `5153fb5 Configure GitHub SSH deploy key`
+- condensed-progress commit: `f17009f Condense progress handoff notes`
 - SSH authentication now succeeds as repository `AFAC2026-4/4`.
-- Remote heads were empty before the first push attempt.
+- Remote heads were empty before the first push.
+- First push succeeded and created remote branch `main`.
 
 Security note:
 
@@ -262,7 +265,6 @@ Security note:
 
 ## Next Actions
 
-- Push local `main` to GitHub after this condensed progress update is committed.
 - Re-run retrieval/evidence pack generation on the full MinerU corpus, replacing earlier fallback-heavy draft evidence.
 - Add a dependency file for the final runtime stack.
 - Decide whether to run GLM dev/eval verification on 100 questions.
