@@ -768,3 +768,35 @@ Subagent 审计：
   - `processed_data/`
   - `script/__pycache__/`
 - 首次提交前的计划跟踪范围仅包含轻量源码、文档和进度文件，避免把 6.7G 数据资产提交到仓库。
+
+## AFAC2026-4 GitHub remote push auth check v1
+
+### 任务
+
+尝试将本地 Git 仓库推送到 GitHub 仓库 `https://github.com/AFAC2026-4/4.git`，确认远端访问和本机认证状态。
+
+### 环境
+
+- workspace: `/public/home/zhangfanjin/zhangnianhao/11-competetion/AFAC2026-4`
+- shell: `bash`
+- date/timezone: 2026-07-07, Asia/Shanghai
+- local branch: `main`
+- target remote: `https://github.com/AFAC2026-4/4.git`
+
+### 超参数 / 配置
+
+- remote name: `origin`
+- prompt policy: `GIT_TERMINAL_PROMPT=0`，避免在非交互环境中卡住或暴露凭证输入。
+- auth checks:
+  - HTTPS `git ls-remote` access check
+  - `gh auth status`
+  - SSH `ssh -o BatchMode=yes -T git@github.com`
+
+### 结果
+
+- 已添加 Git remote `origin`。
+- 远端仓库地址可访问，但当前环境没有可用的 GitHub 写权限凭证。
+- HTTPS push 失败原因：Git 需要 GitHub 用户名/凭证，非交互终端无法读取 askpass。
+- SSH check 失败原因：`git@github.com: Permission denied (publickey)`，说明本机当前没有已授权到 GitHub 的 SSH key。
+- `gh auth status` 未发现可用 GitHub CLI 登录状态。
+- 当前仓库尚未推送到 GitHub；配置凭证后可继续执行 `git push -u origin main`。

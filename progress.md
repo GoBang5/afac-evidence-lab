@@ -9,3 +9,4 @@
 - [2026-07-07 AFAC2026-4 multi-subagent second-pass review v1](1-progress/progreess-2026-07-07.md#afac2026-4-multi-subagent-second-pass-review-v1): 对首轮 13 道 `needs_review` 题做多 subagent 模拟人工复查；二轮仅修正 `fc_a_012: ACD -> AC`，保留 `fc_a_015` 单选题型冲突和 `ins_a_020` 无完全正确选项标记。
 - [2026-07-07 AFAC2026-4 git repository initialization v1](1-progress/progreess-2026-07-07.md#afac2026-4-git-repository-initialization-v1): 在 AFAC2026-4 根目录初始化本地 Git 仓库，主分支为 `main`；尚未创建首次提交，需先规划 `.gitignore` 以避免纳入大文件和中间数据。
 - [2026-07-07 AFAC2026-4 gitignore and initial commit v1](1-progress/progreess-2026-07-07.md#afac2026-4-gitignore-and-initial-commit-v1): 新增 `.gitignore` 并验证 `data/`、`processed_data/`、`public_dataset_a.zip`、Python cache 被忽略；首次提交范围限定为轻量源码、文档和进度记录。
+- [2026-07-07 AFAC2026-4 GitHub remote push auth check v1](1-progress/progreess-2026-07-07.md#afac2026-4-github-remote-push-auth-check-v1): 已添加 GitHub remote `origin` 并尝试推送；远端可访问，但当前环境缺少 GitHub HTTPS/SSH 写权限凭证，尚未成功 push。
