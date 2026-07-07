@@ -816,9 +816,71 @@ Security note:
 - The private key is outside the repository and was not printed.
 - A Linux root user or someone with access to the same Unix account could still use local keys; revoke the deploy key from GitHub if the machine/user account is no longer trusted.
 
+## Framework Repository Upload
+
+Task:
+
+- Upload the preprocessing reproducibility scripts, evidence-first Agent framework, runbook, dependency note, and progress records to the configured GitHub repository.
+- Keep raw data, processed corpora, run outputs, local env files, and secrets out of Git history.
+
+Environment:
+
+- workspace: `/public/home/zhangfanjin/zhangnianhao/11-competetion/AFAC2026-4`
+- branch: `main`
+- remote: `origin -> git@github-afac2026-4:AFAC2026-4/4.git`
+- model/API calls: none
+
+Configuration:
+
+- tracked upload scope:
+  - `agent/`
+  - `script/11_run_agent_v0.py`
+  - `script/12_audit_agent_outputs.py`
+  - `script/13_evaluate_doc_routing.py`
+  - `README.md`
+  - `requirements.txt`
+  - `answering_strategy.md`
+  - `agent_design_from_strategy.md`
+  - `progress.md`
+  - `1-progress/progreess-2026-07-07.md`
+- excluded by `.gitignore`:
+  - `.env` and `.env.*`
+  - `data/`
+  - `processed_data/`
+  - `runs/`
+  - archives, Python caches, logs, local envs, model/checkpoint artifacts
+- hyperparameters: not applicable; this was a repository upload task, not a retrieval or answering run
+
+Validation:
+
+- Sensitive-pattern scan over staged code/docs only found environment variable names and token-budget constants, not secret values.
+- Static compile passed:
+  - `python -m py_compile agent/*.py script/11_run_agent_v0.py script/12_audit_agent_outputs.py script/13_evaluate_doc_routing.py`
+- Development output audit passed:
+  - `python script/12_audit_agent_outputs.py --run-dir runs/group_a_prior_repair_v2 --allow-needs-review --allow-prior-csv`
+  - result: pass, errors 0, warnings 3
+- Staged size check confirmed the uploaded framework files are small; large data/output directories remained ignored.
+
+Results:
+
+- Uploaded commit:
+  - `5c33cf8 Add evidence-first agent framework`
+- Remote update:
+  - `origin/main`: `719cb1a -> 5c33cf8`
+- Files added in the upload:
+  - 24 files
+  - 3,930 insertions
+  - no data, processed-data, run-output, or secret files tracked
+
+Known risks:
+
+- The uploaded repository contains reproducible scripts and framework code, but not the ignored `processed_data/` corpus or `runs/` artifacts.
+- A fresh machine still needs the competition data and preprocessing outputs regenerated locally, or copied out-of-band, before running the Agent end to end.
+- Official Qwen answering remains unrun and still requires explicit user authorization.
+
 ## Next Actions
 
-- Exercise `glm` dev/eval mode on a tiny authorized smoke set if model credentials are available.
+- Record and stabilize the GLM smoke defaults and run notes.
 - Triage the 10 V0 prior+repair `needs_review` rows.
 - Exercise the real model judge on a tiny dev/eval set if credentials are available.
 - For any candidate official run, require `script/12_audit_agent_outputs.py` strict mode to pass.
