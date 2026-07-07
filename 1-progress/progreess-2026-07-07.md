@@ -800,3 +800,45 @@ Subagent 审计：
 - SSH check 失败原因：`git@github.com: Permission denied (publickey)`，说明本机当前没有已授权到 GitHub 的 SSH key。
 - `gh auth status` 未发现可用 GitHub CLI 登录状态。
 - 当前仓库尚未推送到 GitHub；配置凭证后可继续执行 `git push -u origin main`。
+
+## AFAC2026-4 GitHub SSH deploy key setup v1
+
+### 任务
+
+按用户要求改用 SSH key 推送 GitHub，并保证不复用用户已有个人 key；创建当前仓库专用 deploy key，限制 Git remote 只使用这把 key。
+
+### 环境
+
+- workspace: `/public/home/zhangfanjin/zhangnianhao/11-competetion/AFAC2026-4`
+- home: `/public/home/zhangfanjin`
+- shell: `bash`
+- date/timezone: 2026-07-07, Asia/Shanghai
+- local branch: `main`
+- target remote: `git@github-afac2026-4:AFAC2026-4/4.git`
+
+### 超参数 / 配置
+
+- key type: ED25519
+- private key path: `/public/home/zhangfanjin/.ssh/afac2026_4_deploy_ed25519`
+- public key path: `/public/home/zhangfanjin/.ssh/afac2026_4_deploy_ed25519.pub`
+- key comment: `afac2026-4-deploy-20260707`
+- fingerprint: `SHA256:HS9iH8hFHz5kQBs6XCGQNaNp1/YZ/KUvB4vfEnVGrWk`
+- file permissions:
+  - `.ssh/`: `700`
+  - private key: `600`
+  - public key: `644`
+- SSH config alias:
+  - `Host github-afac2026-4`
+  - `HostName github.com`
+  - `User git`
+  - `IdentityFile /public/home/zhangfanjin/.ssh/afac2026_4_deploy_ed25519`
+  - `IdentitiesOnly yes`
+  - `PreferredAuthentications publickey`
+
+### 结果
+
+- 已生成仓库专用 SSH deploy key，未使用已有 `id_rsa` 或其它个人 key。
+- 已将 Git remote `origin` 切换到 SSH alias：`git@github-afac2026-4:AFAC2026-4/4.git`。
+- 已验证 `ssh -G github-afac2026-4` 显示只使用专用 private key。
+- 当前 GitHub 侧尚未添加 public key，因此 `ssh -T github-afac2026-4` 仍返回 `Permission denied (publickey)`。
+- 下一步需要将 public key 添加到 GitHub 仓库 `AFAC2026-4/4` 的 Deploy keys，并勾选 write access；添加后即可执行 `git push -u origin main`。

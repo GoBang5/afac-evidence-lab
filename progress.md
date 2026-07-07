@@ -10,3 +10,4 @@
 - [2026-07-07 AFAC2026-4 git repository initialization v1](1-progress/progreess-2026-07-07.md#afac2026-4-git-repository-initialization-v1): 在 AFAC2026-4 根目录初始化本地 Git 仓库，主分支为 `main`；尚未创建首次提交，需先规划 `.gitignore` 以避免纳入大文件和中间数据。
 - [2026-07-07 AFAC2026-4 gitignore and initial commit v1](1-progress/progreess-2026-07-07.md#afac2026-4-gitignore-and-initial-commit-v1): 新增 `.gitignore` 并验证 `data/`、`processed_data/`、`public_dataset_a.zip`、Python cache 被忽略；首次提交范围限定为轻量源码、文档和进度记录。
 - [2026-07-07 AFAC2026-4 GitHub remote push auth check v1](1-progress/progreess-2026-07-07.md#afac2026-4-github-remote-push-auth-check-v1): 已添加 GitHub remote `origin` 并尝试推送；远端可访问，但当前环境缺少 GitHub HTTPS/SSH 写权限凭证，尚未成功 push。
+- [2026-07-07 AFAC2026-4 GitHub SSH deploy key setup v1](1-progress/progreess-2026-07-07.md#afac2026-4-github-ssh-deploy-key-setup-v1): 生成仓库专用 ED25519 deploy key，配置 SSH alias 限定 `origin` 只使用该 key；等待将 public key 加入 GitHub Deploy keys 后继续 push。
