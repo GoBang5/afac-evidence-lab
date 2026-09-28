@@ -53,3 +53,6 @@ models/
 runs/
 outputs/
 wandb/
+
+# Evidence Lab test scratch space
+.test-tmp/

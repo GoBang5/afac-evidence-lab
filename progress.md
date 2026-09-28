@@ -2,6 +2,8 @@
 
 Use this file as the short navigation index. Detailed handoff notes live in daily files under `1-progress/`.
 
+- [2026-09-28 Evidence Lab](1-progress/progreess-2026-09-28.md): 在独立副本增加等价检索缓存、字符预算、引用审计与断点续跑；100题离线检索热缓存约2.30倍，21项测试通过，无真实模型调用。
+
 - [2026-07-07 current state](1-progress/progreess-2026-07-07.md#current-state): Workspace, env, data/output locations, model policy, and GitHub remote/tracking state.
 - [2026-07-07 data and environment](1-progress/progreess-2026-07-07.md#data-and-environment): `znh-AFAC2026` created with Python 3.12.13; Group A has 100 questions across 5 domains; raw data has 190 PDFs.
 - [2026-07-07 design decisions](1-progress/progreess-2026-07-07.md#design-decisions): Deterministic preprocessing plus rule/BM25 retrieval and option-level evidence; GLM allowed for dev/eval, Qwen requires explicit permission.

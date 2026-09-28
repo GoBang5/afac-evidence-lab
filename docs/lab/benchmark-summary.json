@@ -1,0 +1,34 @@
+{
+  "questions": 100,
+  "score_and_rank_equal_all_passes": true,
+  "cold_retrieval_seconds": {
+    "upstream": 25.767762548999965,
+    "cached": 16.72502675100001
+  },
+  "warm_retrieval_seconds_per_pass": {
+    "upstream": 24.163566000999992,
+    "cached": 10.516852430666658
+  },
+  "warm_query_p50_ms": {
+    "upstream": 81.30672949999962,
+    "cached": 20.7227085000099
+  },
+  "warm_query_p95_ms": {
+    "upstream": 771.7609580000016,
+    "cached": 410.49691699999613
+  },
+  "warm_speedup": 2.2976043602684912,
+  "upstream_over_budget_questions": 95,
+  "optimized_over_budget_questions": 0,
+  "baseline_full_doc_coverage": 92,
+  "optimized_full_doc_coverage": 95,
+  "optimized_complete_option_routes": 100,
+  "mean_prompt_chars": {
+    "original": 16445.08,
+    "baseline": 11474.14,
+    "optimized": 11592.12
+  },
+  "answer_accuracy": null,
+  "api_calls": 0,
+  "model_tokens": 0
+}

@@ -1,0 +1,2 @@
+{"qid": "demo_001", "domain": "financial_reports", "split": "demo", "question": "根据两份示例年报，下列关于2025年收入和净利润的描述哪些正确？", "options": {"A": "甲公司2025年收入100万元", "B": "乙公司2025年收入80万元", "C": "甲公司2025年净利润20万元", "D": "乙公司2025年净利润50万元"}, "answer_format": "multi", "doc_ids": ["demo::alpha", "demo::beta"]}
+{"qid": "demo_002", "domain": "financial_reports", "split": "demo", "question": "甲公司2025年的净利润是多少？", "options": {"A": "20万元", "B": "50万元"}, "answer_format": "mcq", "doc_ids": ["demo::alpha"]}

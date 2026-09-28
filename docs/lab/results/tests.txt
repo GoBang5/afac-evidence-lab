@@ -1,0 +1,26 @@
+test_label_exclusion_page_boundaries_and_hashes (test_lab.AdapterTests) ... ok
+test_contradictory_answer_rejected (test_lab.AuditTests) ... ok
+test_hallucinated_citation_rejected (test_lab.AuditTests) ... ok
+test_structural_validation_not_semantic_proof (test_lab.AuditTests) ... ok
+test_tampered_quote_rejected (test_lab.AuditTests) ... ok
+test_unknown_verdict_needs_review (test_lab.AuditTests) ... ok
+test_cover_low_score_document_if_fits (test_lab.BudgetTests) ... ok
+test_duplicate_id_deduplicated_provenance_preserved (test_lab.BudgetTests) ... ok
+test_global_budget_counts_question_and_metadata (test_lab.BudgetTests) ... ok
+test_impossible_budget_fails_before_model_call (test_lab.BudgetTests) ... ok
+test_zero_limits_rejected (test_lab.BudgetTests) ... ok
+test_changed_config_cannot_reuse_output (test_lab.ResumeTests) ... ok
+test_checkpoint_isolated_by_fingerprint (test_lab.ResumeTests) ... ok
+test_model_adapter_prompt_usage_and_audit_integrated (test_lab.ResumeTests) ... ok
+test_model_failure_not_checkpointed (test_lab.ResumeTests) ... ok
+test_partial_resume_skips_completed_questions (test_lab.ResumeTests) ... ok
+test_prior_answers_not_allowed (test_lab.ResumeTests) ... ok
+test_qwen_default_gate_blocks_before_transport (test_lab.ResumeTests) ... ok
+test_duplicate_candidate_id_rejected (test_lab.RetrievalTests) ... ok
+test_exact_upstream_scores_features_and_ranks_twice (test_lab.RetrievalTests) ... ok
+test_unknown_document_reports_missing (test_lab.RetrievalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.054s
+
+OK

@@ -1,0 +1,2 @@
+{"candidate_id": "demo-alpha-1", "doc_id": "demo::alpha", "page_id": 1, "text": "甲公司2025年收入100万元，净利润20万元。单位：人民币万元。", "unit_type": "text", "modality": "text", "source_name": "甲公司示例年报", "locator": {"page_numbering": "physical_1_based"}}
+{"candidate_id": "demo-beta-1", "doc_id": "demo::beta", "page_id": 1, "text": "乙公司2025年收入80万元，净利润10万元。单位：人民币万元。", "unit_type": "text", "modality": "text", "source_name": "乙公司示例年报", "locator": {"page_numbering": "physical_1_based"}}

@@ -1,4 +1,29 @@
-# AFAC2026-4 Financial Long-Document QA Agent
+# AFAC Evidence Lab｜金融长文档证据问答工程优化
+
+基于 [AFAC2026-4/4](https://github.com/AFAC2026-4/4) 的 `042e0fd` 构建的独立本地衍生项目，面向 AI Agent / 大模型应用开发。
+
+新增 `evidence_lab/` 提供保持检索评分与返回排名一致的特征缓存、完整判题提示词字符预算、文档与选项检索路径覆盖选择、引用结构检查，以及按代码/数据/配置指纹隔离的 SQLite 断点续跑。原始 `agent/` 保留，便于做基线对照。
+
+```bash
+python3 -m evidence_lab run --out runs/lab-demo
+python3 -m unittest discover -s tests -v
+```
+
+第一条命令使用两道虚构题做离线演示，不需要 API Key。重跑同一命令可读取检查点。
+
+100 道 A 榜题、68 份指定文档、19,114 个文本片段的本机离线对照：热缓存检索阶段平均每轮 **24.16 → 10.52 秒（2.30 倍）**，返回候选分数、特征和顺序一致；在相同 **12,000 提示词字符**上限下，指定文档完整覆盖 **92/100 → 95/100**。这不是模型答题准确率、Token 节省率或比赛成绩。
+
+- [新项目运行与设计说明](docs/lab/README.md)
+- [上游与新增贡献边界](docs/lab/OWNERSHIP.md)
+- [固定协议实测摘要](docs/lab/benchmark-summary.json)
+- [完整实验报告与逐题依据](docs/lab/experiment-report.md)
+- [4条简历候选表述](docs/lab/resume.md)
+
+以下保留上游 README 作为来源记录，其中历史结果、服务器路径和既有产物均不代表本项目的新增成果。
+
+---
+
+# Upstream: AFAC2026-4 Financial Long-Document QA Agent
 
 This repository implements an evidence-first Agent for the AFAC2026-4 financial long-document multiple-choice task.
 

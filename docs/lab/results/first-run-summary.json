@@ -1,0 +1,14 @@
+{
+  "questions_requested": 100,
+  "completed": 100,
+  "reused": 0,
+  "failures": [],
+  "elapsed_seconds": 16.085869958,
+  "status": {
+    "needs_model_judge": 100
+  },
+  "total_tokens": 0,
+  "answer_accuracy": null,
+  "mode": "none",
+  "fingerprint": "f2a163d4325ef2fc4bdf6be004c717dd64babb31a4b57aa681f123d4234f34d4"
+}
