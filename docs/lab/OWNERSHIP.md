@@ -2,10 +2,10 @@
 
 ## 上游来源
 
-- 本项目仓库：https://github.com/ly25122/afac-evidence-lab （首次上传为私有仓库）。
+- 本项目仓库：https://github.com/GoBang5/afac-evidence-lab ，归属用户已确认的 `GoBang5` 账号。
 - 仓库：https://github.com/AFAC2026-4/4
 - 对照提交：`042e0fdb27be88692d05451198bb1be38a152aeb`，GitHub API 核对的 main 提交。
-- 网络 clone 因 HTTP/2 失败，改从本机已有仓库的相同已提交版本建立独立 clone；没有复制其未提交改动。发布前通过 HTTP/1.1 补齐上游历史；`origin` 指向本项目，`upstream` 指向原仓库，本地工作分支为 `codex/evidence-lab`。
+- 网络 clone 因 HTTP/2 失败，改从本机已有仓库的相同已提交版本建立独立 clone；没有复制其未提交改动。通过 HTTP/1.1 补齐上游历史。`origin` 指向 `GoBang5/afac-evidence-lab`，`upstream` 指向原仓库；本地工作分支为 `codex/evidence-lab`，发布分支为 `main`。
 - `agent/`、`script/`、原始设计与历史进展来自上游。原 `README.md` 主体保留，并明确标记历史归属。
 - 用户提供的获奖文章用于识别设计思路。文章中的获奖团队、比赛成绩与自进化机制不属于用户个人成果，也不构成本仓库实际实现的充分证据。
 

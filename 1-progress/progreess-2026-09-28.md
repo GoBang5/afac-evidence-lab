@@ -17,3 +17,7 @@
 ## GitHub 发布任务
 
 用户要求直接上传 GitHub。以账号 `ly25122` 创建私有仓库 `afac-evidence-lab`，保留原仓库为 `upstream`，新仓库为 `origin`。上传内容增加可移植的实验报告、四条简历候选、逐题指标、延迟明细及测试记录；核对 Markdown 链接与实验源码哈希。补齐上游 Git 历史，准备将当前新增成果提交并推送到新仓库 `main`。
+
+## 误传撤回
+
+用户指出 GitHub 账号有误并要求回退。上传提交为 `18d3a15773f79983e6346f1c290e259c5d7b2b52`，本地保留该提交及全部项目文件；移除误传 origin 和跟踪分支，恢复 `origin=https://github.com/AFAC2026-4/4.git`。删除误传仓库的 API 返回403，明确缺少 `delete_repo` scope；为撤回默认分支上的内容，以精确 force-with-lease 将其替换为空树根提交。仓库实体仍需具备删除权限的账号处理，移除分支历史不等于 GitHub 已清除旧提交对象。回退元数据记录在本地任务目录 `github-rollback.json`。

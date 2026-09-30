@@ -2,6 +2,8 @@
 
 Use this file as the short navigation index. Detailed handoff notes live in daily files under `1-progress/`.
 
+- [2026-09-30 GitHub publication](1-progress/progreess-2026-09-30.md): 核对用户确认的 GoBang5 账号，准备发布代码、实验依据与简历材料到私有仓库。
+
 - [2026-09-28 Evidence Lab](1-progress/progreess-2026-09-28.md): 在独立副本增加等价检索缓存、字符预算、引用审计与断点续跑；100题离线检索热缓存约2.30倍，21项测试通过，无真实模型调用。
 
 - [2026-07-07 current state](1-progress/progreess-2026-07-07.md#current-state): Workspace, env, data/output locations, model policy, and GitHub remote/tracking state.
