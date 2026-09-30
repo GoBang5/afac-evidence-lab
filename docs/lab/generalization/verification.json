@@ -1,0 +1,31 @@
+{
+  "deterministic_rerun": {
+    "finqa/predictions.jsonl": {
+      "match": true,
+      "sha256": "0efc027a7dc4759d47c55377a5725d7427c2ef3a24cdec5c71f937933e9d4392"
+    },
+    "finqa/rows.jsonl": {
+      "match": true,
+      "sha256": "3f24ee166e53b53e41ee9c86da2c1e049efdcc53d1b1572274bc8d4f51ca4011"
+    },
+    "finqa/summary.json": {
+      "match": true,
+      "sha256": "e07862848cd8420bc17d46b7b99f5de4eb134d2fb69d4a35e561354fddd572c6"
+    },
+    "afac/rows.jsonl": {
+      "match": true,
+      "sha256": "9fe25d0a27646902519e735d0f77cb9c628ef6d575ececbbee955d8b66407258"
+    }
+  },
+  "current_source_matches_all_run_manifests": true,
+  "table_format_exact_matches_official_rows": 7517,
+  "source_git_blob_verified": "59958c7c3bb3b21f4dff6bc912a0fe0ae710aee0",
+  "source_bytes": 14395143,
+  "tests": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "passed": 29,
+    "failed": 0
+  },
+  "api_calls": 0,
+  "answer_accuracy": null
+}

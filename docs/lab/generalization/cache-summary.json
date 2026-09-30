@@ -1,0 +1,16 @@
+{
+  "questions": 1147,
+  "exact_equivalent_comparisons": 4588,
+  "all_equal": true,
+  "warm_repeats": 3,
+  "warm_seconds_per_pass": {
+    "upstream": 0.788821495666669,
+    "cached": 0.3243939009999914
+  },
+  "warm_speedup": 2.4316779484294004,
+  "cold_seconds": {
+    "upstream": 1.8480480619999864,
+    "cached": 2.178340116
+  },
+  "api_calls": 0
+}

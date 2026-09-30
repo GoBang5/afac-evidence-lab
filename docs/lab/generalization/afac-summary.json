@@ -1,0 +1,323 @@
+{
+  "questions": 100,
+  "variants": {
+    "full": {
+      "n": 100,
+      "doc_complete_count": 95,
+      "route_complete_count": 100,
+      "mean_prompt_chars": 11592.12,
+      "mean_evidence_count": 12.17,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 0
+    },
+    "no_doc_priority": {
+      "n": 100,
+      "doc_complete_count": 91,
+      "route_complete_count": 100,
+      "mean_prompt_chars": 11589.47,
+      "mean_evidence_count": 12.17,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 4
+    },
+    "no_option_priority": {
+      "n": 100,
+      "doc_complete_count": 95,
+      "route_complete_count": 100,
+      "mean_prompt_chars": 11587.81,
+      "mean_evidence_count": 12.17,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 0
+    },
+    "no_coverage_priority": {
+      "n": 100,
+      "doc_complete_count": 91,
+      "route_complete_count": 100,
+      "mean_prompt_chars": 11585.16,
+      "mean_evidence_count": 12.17,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 4
+    },
+    "no_option_queries": {
+      "n": 100,
+      "doc_complete_count": 87,
+      "route_complete_count": 0,
+      "mean_prompt_chars": 11495.37,
+      "mean_evidence_count": 11.73,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 8
+    },
+    "no_cost_normalization": {
+      "n": 100,
+      "doc_complete_count": 95,
+      "route_complete_count": 100,
+      "mean_prompt_chars": 11685,
+      "mean_evidence_count": 11.86,
+      "budget_violations": 0,
+      "doc_wins_vs_full": 0,
+      "doc_losses_vs_full": 0
+    }
+  },
+  "by_domain": {
+    "full": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11562.55,
+        "mean_evidence_count": 10.8,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11626.3,
+        "mean_evidence_count": 13.5,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 17,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11570.15,
+        "mean_evidence_count": 11.55,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11601.1,
+        "mean_evidence_count": 10.75,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11600.5,
+        "mean_evidence_count": 14.25,
+        "budget_violations": 0
+      }
+    },
+    "no_doc_priority": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11562.55,
+        "mean_evidence_count": 10.8,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11626.3,
+        "mean_evidence_count": 13.5,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 13,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11556.9,
+        "mean_evidence_count": 11.55,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11601.1,
+        "mean_evidence_count": 10.75,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11600.5,
+        "mean_evidence_count": 14.25,
+        "budget_violations": 0
+      }
+    },
+    "no_option_priority": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11541,
+        "mean_evidence_count": 10.8,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11626.3,
+        "mean_evidence_count": 13.5,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 17,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11570.15,
+        "mean_evidence_count": 11.55,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11601.1,
+        "mean_evidence_count": 10.75,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11600.5,
+        "mean_evidence_count": 14.25,
+        "budget_violations": 0
+      }
+    },
+    "no_coverage_priority": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11541,
+        "mean_evidence_count": 10.8,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11626.3,
+        "mean_evidence_count": 13.5,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 13,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11556.9,
+        "mean_evidence_count": 11.55,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11601.1,
+        "mean_evidence_count": 10.75,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11600.5,
+        "mean_evidence_count": 14.25,
+        "budget_violations": 0
+      }
+    },
+    "no_option_queries": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 0,
+        "mean_prompt_chars": 11488.55,
+        "mean_evidence_count": 10.5,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 19,
+        "route_complete_count": 0,
+        "mean_prompt_chars": 11458,
+        "mean_evidence_count": 12.85,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 14,
+        "route_complete_count": 0,
+        "mean_prompt_chars": 11562.25,
+        "mean_evidence_count": 11.45,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 0,
+        "mean_prompt_chars": 11607.45,
+        "mean_evidence_count": 10.75,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 16,
+        "route_complete_count": 0,
+        "mean_prompt_chars": 11360.6,
+        "mean_evidence_count": 13.1,
+        "budget_violations": 0
+      }
+    },
+    "no_cost_normalization": {
+      "financial_contracts": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11786.55,
+        "mean_evidence_count": 10.55,
+        "budget_violations": 0
+      },
+      "financial_reports": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11667.55,
+        "mean_evidence_count": 13.15,
+        "budget_violations": 0
+      },
+      "insurance": {
+        "n": 20,
+        "doc_complete_count": 17,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11770.1,
+        "mean_evidence_count": 11.25,
+        "budget_violations": 0
+      },
+      "regulatory": {
+        "n": 20,
+        "doc_complete_count": 20,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11623.8,
+        "mean_evidence_count": 10.65,
+        "budget_violations": 0
+      },
+      "research": {
+        "n": 20,
+        "doc_complete_count": 18,
+        "route_complete_count": 20,
+        "mean_prompt_chars": 11577,
+        "mean_evidence_count": 13.7,
+        "budget_violations": 0
+      }
+    }
+  },
+  "scope": "known A-list regression; route coverage is not gold evidence recall",
+  "answer_accuracy": null,
+  "api_calls": 0,
+  "elapsed_seconds": 24.730498
+}

@@ -1,0 +1,17 @@
+{
+  "dataset": "FinQA",
+  "upstream_commit": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "source_sha256": "831dbfb2e785dbc227f895ce3f24046433467aec67b09db2bd6ac7692a8a30dc",
+  "questions": 1147,
+  "companies": 100,
+  "candidates": 35862,
+  "candidate_scope": "one provided context per question; not full reports",
+  "gold_in_inference": false,
+  "answer_values_imported": false,
+  "files_sha256": {
+    "docs.jsonl": "d7ce90a37a88a4ed0a8e1566af2e928451bf0cbe6a44a9910c58bc18c2d9d4ee",
+    "gold.jsonl": "22c9941ce314a91cac1b06e5e56fe39d9e99720ce621c91ac4454fc9ba28781e",
+    "questions.jsonl": "074cbce8cc0f763a767e522af7cea22213cf3ec0d3bc0f532a659818fa81f313",
+    "selector.jsonl": "dd3a230d385d846f25bf9f9e997a1370571b16765c8e9aaf2ab50ef21cfda55b"
+  }
+}

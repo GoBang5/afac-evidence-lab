@@ -17,7 +17,10 @@ python3 -m unittest discover -s tests -v
 - [上游与新增贡献边界](docs/lab/OWNERSHIP.md)
 - [固定协议实测摘要](docs/lab/benchmark-summary.json)
 - [完整实验报告与逐题依据](docs/lab/experiment-report.md)
+- [泛化与消融实验：FinQA 1,147题 + AFAC六组消融](docs/lab/generalization-report.md)
 - [4条简历候选表述](docs/lab/resume.md)
+
+2026-09-30 新增外部评测：FinQA 已给定上下文内的证据 Recall@5 为 **80.60%**，全部标注证据进入 top-5 的比例为 **68.96%**；AFAC 去掉文档覆盖优先后完整覆盖 **95→91/100**，去掉逐选项查询后 **95→87/100**。FinQA 上复杂评分相对简化评分的优势很小，探索性区间包含零；混合文本/表格取证仍有明显短板。29项测试通过，确定性复跑结果一致，真实模型答案质量尚未评测。
 
 以下保留上游 README 作为来源记录，其中历史结果、服务器路径和既有产物均不代表本项目的新增成果。
 

@@ -25,7 +25,8 @@ def prompt_chars(question, rows):
     return sum(len(m['content']) for m in build_judge_messages(question, rows))
 
 
-def pack(question, options, stem, budget=Budget()):
+def pack(question, options, stem, budget=Budget(), *, prioritize_docs=True,
+         prioritize_options=True, normalize_cost=True):
     fixed = prompt_chars(question, [])
     if fixed > budget.max_prompt_chars:
         raise ValueError('Question and prompt overhead alone exceed character budget')
@@ -53,6 +54,8 @@ def pack(question, options, stem, budget=Budget()):
     selected, covered = [], set()
     goals = {('option', label) for label in question.options}
     goals |= {('doc', did) for did in question.doc_ids}
+    priority_goals = {g for g in goals if (g[0] == 'doc' and prioritize_docs)
+                      or (g[0] == 'option' and prioritize_options)}
     while pool and len(selected) < budget.max_evidence:
         choices = []
         for row in pool:
@@ -61,9 +64,10 @@ def pack(question, options, stem, budget=Budget()):
             if cost > budget.max_prompt_chars:
                 continue
             coverage = {('doc', row['doc_id'])} | {('option', label) for label in row['retrieval_options']}
-            gain = len((coverage & goals) - covered)
+            gain = len((coverage & priority_goals) - covered)
             marginal = max(1, cost - prompt_chars(question, selected))
-            choices.append((gain, row['score'] / marginal, row['candidate_id'], candidate, coverage))
+            value = row['score'] / marginal if normalize_cost else row['score']
+            choices.append((gain, value, row['candidate_id'], candidate, coverage))
         if not choices:
             break
         _, _, _, chosen, coverage = max(choices, key=lambda x: (x[0], x[1], x[2]))

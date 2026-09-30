@@ -1,0 +1,66 @@
+{
+  "version": "2026-09-30-v1",
+  "frozen_at": "2026-09-30T03:36:59.957670+00:00",
+  "source_commit": "b114a9d1704ec3219f3a511602edbab3845c9905",
+  "finqa_commit": "0f16e2867befa6840783e58be38c9efb9229d742",
+  "finqa": {
+    "split": "entire official public test; no score-driven exclusions or tuning",
+    "scope": "given example context; English text/table supporting-fact retrieval, not full-document routing or answer accuracy",
+    "inference_fields": [
+      "id",
+      "pre_text",
+      "post_text",
+      "table",
+      "qa.question"
+    ],
+    "labels": "qa.gold_inds keys only, isolated until scoring; never provided to retrieval",
+    "variants": [
+      "full",
+      "no_numeric_bonus",
+      "token_only"
+    ],
+    "k": [
+      3,
+      5
+    ],
+    "primary": "all_gold_recalled_at_5",
+    "secondary": [
+      "macro_gold_recall_at_3",
+      "macro_gold_recall_at_5",
+      "all_gold_recalled_at_3"
+    ],
+    "bootstrap": "2000 paired company-cluster resamples; seed 20260930; percentile 95% exploratory intervals; no significance claims",
+    "cache": "exact upstream equivalence; 1 cold+3 warm passes; alternating order"
+  },
+  "afac": {
+    "dataset": "existing A100; known regression set, not blind holdout",
+    "variants": [
+      "full",
+      "no_doc_priority",
+      "no_option_priority",
+      "no_coverage_priority",
+      "no_option_queries",
+      "no_cost_normalization"
+    ],
+    "fixed": {
+      "max_prompt_chars": 12000,
+      "max_evidence": 18,
+      "max_quote_chars": 900,
+      "option_top_k": 6,
+      "question_top_k": 14,
+      "doc_top_k": 16
+    },
+    "metrics": [
+      "requested_doc_complete",
+      "option_route_complete",
+      "mean_prompt_chars",
+      "budget_violations"
+    ],
+    "answer_accuracy": null
+  },
+  "model_eval": {
+    "status": "pending credentials/model/endpoint/cost cap",
+    "api_calls": 0
+  },
+  "policy": "Report all variants and failures. Preserve initial results; no test-driven tuning. No paper leaderboard claim."
+}

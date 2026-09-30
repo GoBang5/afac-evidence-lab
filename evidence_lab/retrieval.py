@@ -155,12 +155,17 @@ def cached_score_candidate(
     }
 
 
-def retrieve(index, question, option_top_k=6, question_top_k=14, doc_top_k=16):
+def retrieve(index, question, option_top_k=6, question_top_k=14, doc_top_k=16,
+             *, include_options=True, scoring='full'):
+    if scoring not in ('full', 'no_numeric_bonus', 'token_only'):
+        raise ValueError('Unknown scoring variant: ' + scoring)
     features = extract_question_features(question)
     docs, missing = index.route_docs(question, doc_top_k)
     candidates = index.get_candidates(docs)
     idf = index.local_idf(docs)
     queries = build_option_queries(question, features)
+    if not include_options:
+        queries = {}
 
     def rank(query, option, limit):
         option_text = question.options.get(option, "")
@@ -169,6 +174,20 @@ def retrieve(index, question, option_top_k=6, question_top_k=14, doc_top_k=16):
         for cand in candidates:
             score, details = cached_score_candidate(index, cand, query, question, features,
                                                      idf, option_text, query_features)
+            if scoring != 'full':
+                # Ablations operate on the exact component values, not rounded
+                # diagnostic values, so unrelated components remain unchanged.
+                q_numbers = query_features['q_numbers']
+                q_years = query_features['q_years']
+                static = index.static_for(cand, question.domain)
+                if scoring == 'no_numeric_bonus':
+                    score -= 2.5 * len(q_numbers & static['numbers'])
+                    score -= 1.5 * len(q_years & static['years'])
+                else:
+                    counts = index.token_counts_for(cand)
+                    score = sum((1.0 + math.log1p(counts[t])) * idf.get(t, 1.0) * min(n, 3)
+                                for t, n in query_features['q_counts'].items() if counts.get(t))
+                details = {**details, 'ablation': scoring}
             if score > 0:
                 scored.append(ScoredEvidence(cand, score, details, option))
         scored.sort(key=lambda item: item.score, reverse=True)
