@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "model": "qwen3.8-27b",
+  "content": "{\"answer\":0.25,\"evidence_ids\":[\"E1\"]}",
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 89,
+    "total_tokens": 105,
+    "completion_tokens": 16,
+    "prompt_tokens_details": null,
+    "reasoning_tokens": 0
+  },
+  "latency_seconds": 0.557486417,
+  "scope": "fictional arithmetic smoke test, not benchmark"
+}

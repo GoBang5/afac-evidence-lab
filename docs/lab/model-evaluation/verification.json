@@ -1,0 +1,12 @@
+{
+  "tests_passed": 35,
+  "smoke_success": true,
+  "benchmark_requests": 208,
+  "resume_transport_calls": 0,
+  "prediction_and_score_hashes_unchanged": {
+    "predictions.jsonl": "b790579ae9c2dbe3188049e8ced73d9ef548e50327b05ec1e7aea42a410806fd",
+    "scores.jsonl": "01e96db845b4fcea7f180fb3c5d3bcde399b99f1f9d5bf4934dc45ee1a9047e6"
+  },
+  "source_hashes_verified": true,
+  "independent_model_rerun": false
+}

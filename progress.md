@@ -2,7 +2,8 @@
 
 Use this file as the short navigation index. Detailed handoff notes live in daily files under `1-progress/`.
 
-- [2026-09-30 泛化与消融](1-progress/progreess-2026-09-30.md#泛化与消融): 完成FinQA 1,147题检索泛化、AFAC六组消融、4,588次缓存等价检查；29项测试通过，无真实模型调用。
+- [2026-09-30 真实模型](1-progress/progreess-2026-09-30.md#真实模型评测与配置纠正): 读取已提供的本地API配置，完成ecnu-plus 60题四组真实试验，208次正式调用，35项测试通过。
+- [2026-09-30 泛化与消融](1-progress/progreess-2026-09-30.md#泛化与消融): 完成FinQA 1,147题检索泛化、AFAC六组消融、4,588次缓存等价检查；该阶段29项测试通过，无真实模型调用。
 - [2026-09-30 GitHub publication](1-progress/progreess-2026-09-30.md): 已发布到确认的 GoBang5 账号，并按用户要求改为公开仓库。
 
 - [2026-09-28 Evidence Lab](1-progress/progreess-2026-09-28.md): 在独立副本增加等价检索缓存、字符预算、引用审计与断点续跑；100题离线检索热缓存约2.30倍，21项测试通过，无真实模型调用。

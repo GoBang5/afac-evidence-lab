@@ -10,6 +10,7 @@ __pycache__/
 # Local environments and secrets
 .env
 .env.*
+*.local.env
 !.env.example
 .venv/
 venv/

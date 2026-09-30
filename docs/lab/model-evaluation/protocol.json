@@ -1,0 +1,39 @@
+{
+  "version": "model-v1",
+  "frozen_at": "2026-09-30T09:37:10.784526+00:00",
+  "questions": 60,
+  "per_stratum": 20,
+  "population_by_stratum": {
+    "table": 706,
+    "text": 283,
+    "mixed": 158
+  },
+  "sampling": "smallest SHA256(20260930-model-v1:qid) per evidence type; fixed before API outcomes",
+  "variants": [
+    "full",
+    "token_only",
+    "no_retrieval",
+    "oracle_gold"
+  ],
+  "top_k": 5,
+  "temperature": 0,
+  "max_tokens": 512,
+  "thinking": "disabled",
+  "max_prompt_chars": 20000,
+  "max_requests": 240,
+  "concurrency": 1,
+  "automatic_retries": 0,
+  "credit_reservation_cap": 500,
+  "metric": "exact equality after percent normalization and round(value,5); yes/no exact; null/error incorrect",
+  "scope": "60-question balanced pilot, not full-test or official program-execution accuracy",
+  "oracle_scope": "gold fact IDs used only for oracle context; diagnostic, not end-to-end",
+  "sources_sha256": {
+    "raw": "831dbfb2e785dbc227f895ce3f24046433467aec67b09db2bd6ac7692a8a30dc",
+    "rankings": "0efc027a7dc4759d47c55377a5725d7427c2ef3a24cdec5c71f937933e9d4392",
+    "gold_facts": "22c9941ce314a91cac1b06e5e56fe39d9e99720ce621c91ac4454fc9ba28781e"
+  },
+  "files_sha256": {
+    "jobs.jsonl": "3ecb8d603792c5a1137ca54781ae196debb7799bd0ecd0f94c964decacceeac0",
+    "labels.jsonl": "67324387201eb1c2c72162b6029eb0f33165b300b0d83ce9e8ebda5e7d568f0c"
+  }
+}
