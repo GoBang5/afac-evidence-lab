@@ -1,0 +1,84 @@
+{
+  "scope": "post-hoc diagnosis only; frozen primary scores unchanged; no API calls",
+  "full_cross_tab": {
+    "all_gold_present": {
+      "questions": 33,
+      "reference_matches": 21,
+      "abstentions": 3,
+      "nonmatching_answered": 9
+    },
+    "not_all_gold_present": {
+      "questions": 27,
+      "reference_matches": 5,
+      "abstentions": 15,
+      "nonmatching_answered": 7
+    }
+  },
+  "absolute_tolerance_sensitivity": {
+    "full": {
+      "original_matches": 26,
+      "additional_matches_if_abs_tolerance_1e_4": 1,
+      "qids": [
+        "GS/2015/page_171.pdf-3"
+      ],
+      "not_used_to_replace_primary_metric": true
+    },
+    "oracle_gold": {
+      "original_matches": 33,
+      "additional_matches_if_abs_tolerance_1e_4": 4,
+      "qids": [
+        "UA/2007/page_70.pdf-1",
+        "L/2009/page_84.pdf-2",
+        "GS/2015/page_171.pdf-3",
+        "C/2008/page_65.pdf-2"
+      ],
+      "not_used_to_replace_primary_metric": true
+    }
+  },
+  "verified_examples": [
+    {
+      "qid": "ECL/2016/page_52.pdf-1",
+      "category": "题意与参考程序冲突",
+      "question": "what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?",
+      "gold_answer_text": "43.7%",
+      "gold_exe_ans": 0.00543,
+      "gold_program": "divide(327, 184), divide(#0, 327)",
+      "independent_arithmetic_check": 0.43730886850152906,
+      "note": "题目问美国境内比例；应为(327-184)/327，参考程序却是divide(327,184), divide(#0,327)。答案字段合理，但模型的calculation字段仍有不一致，不能据此判定整条输出完全正确。"
+    },
+    {
+      "qid": "AON/2015/page_96.pdf-1",
+      "category": "题意与参考程序冲突",
+      "question": "what was the average number of shares issued to employees from 2013 to 2015",
+      "gold_answer_text": "[6] : in 2015 , 2014 , and 2013 , shares , respectively , were issued to employees under the plan .",
+      "gold_exe_ans": 850636.0,
+      "gold_program": "add(411636, 439000)",
+      "independent_arithmetic_check": 468878.6666666667,
+      "note": "题目问2013至2015三年平均，参考程序只相加其中两年。"
+    },
+    {
+      "qid": "ADI/2011/page_61.pdf-1",
+      "category": "单位口径不一致",
+      "question": "what is the yearly interest payment related to the $ 375 million notional amount included in the swap terms?",
+      "gold_answer_text": "18.8",
+      "gold_exe_ans": 18.75,
+      "gold_program": "multiply(375, 5.0%)",
+      "independent_arithmetic_check": 18.75,
+      "note": "参考18.75采用百万美元，模型输出18750000采用美元，数值比较缺少单位字段。"
+    },
+    {
+      "qid": "HOLX/2006/page_100.pdf-2",
+      "category": "表格序列化歧义",
+      "question": "what percentage of the estimated purchase price is developed technology and know how?",
+      "gold_answer_text": "6%",
+      "gold_exe_ans": 0.0607,
+      "gold_program": "divide(1900, 31300)",
+      "independent_arithmetic_check": 0.06070287539936102,
+      "note": "原表第一行是净有形资产23700，却作为列标题重复，容易把1900对应的项目值误读为23700。"
+    }
+  ],
+  "label_review_not_exhaustive": true,
+  "balanced_sample_mixed_share": 0.3333333333333333,
+  "population_mixed_share": 0.13775065387968613,
+  "reweighting_changes_full_rate_pp": 1.522813135716361
+}
