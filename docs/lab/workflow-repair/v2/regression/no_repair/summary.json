@@ -1,0 +1,17 @@
+{
+  "questions_requested": 12,
+  "completed": 12,
+  "reused": 0,
+  "failures": [],
+  "elapsed_seconds": 0.03758720799999793,
+  "status": {
+    "validated_calculation": 5,
+    "needs_review": 7
+  },
+  "total_tokens": 17429,
+  "answer_accuracy": null,
+  "mode": "openai_compatible",
+  "fingerprint": "63b7f2f97c881af6a4f14b906af87a366d8d0e0f3a2ae26ea8bd9a91e5ed2b76",
+  "new_model_requests": 0,
+  "repair_rounds": 0
+}

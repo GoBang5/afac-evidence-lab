@@ -6,6 +6,8 @@ from agent.schema import AgentConfig
 from .budget import Budget
 from .data import adapt
 from .runner import run
+from .api_config import DEFAULT_CONFIG
+from .numeric import NumericConfig
 
 
 def main():
@@ -24,14 +26,20 @@ def main():
     p.add_argument('--llm-model')
     p.add_argument('--llm-base-url')
     p.add_argument('--llm-api-key-env', default='OPENAI_API_KEY')
+    p.add_argument('--api-config', type=Path, help='Read API_BASE_URL/API_MODEL/API_KEY as data; numeric model mode requires this')
+    p.add_argument('--use-local-api', action='store_true', help='Use api-config.local.env in the project parent')
+    p.add_argument('--max-repair-rounds', type=int, default=1)
+    p.add_argument('--max-requests', type=int, default=100)
     args = parser.parse_args()
     if args.command == 'prepare':
         result = adapt(args.source, args.out)
     else:
         config = AgentConfig(judge_mode=args.judge_mode, allow_qwen=args.allow_qwen,
                              llm_model=args.llm_model, llm_base_url=args.llm_base_url,
-                             llm_api_key_env=args.llm_api_key_env)
-        result = run(args.data, args.out, Budget(max_prompt_chars=args.max_prompt_chars), config, args.limit)
+                             llm_api_key_env=args.llm_api_key_env, max_repair_rounds=args.max_repair_rounds)
+        result = run(args.data, args.out, Budget(max_prompt_chars=args.max_prompt_chars), config, args.limit,
+                     api_config=args.api_config or (DEFAULT_CONFIG if args.use_local_api else None),
+                     numeric=NumericConfig(max_repair_rounds=args.max_repair_rounds), max_requests=args.max_requests)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if result.get('failures'):
         raise SystemExit(1)

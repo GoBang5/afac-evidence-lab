@@ -1,0 +1,108 @@
+--- a/evidence_lab/calculator.py
++++ b/evidence_lab/calculator.py
+@@ -47 +47 @@
+-    if not isinstance(expression, str) or len(expression) > 800:
++    if not isinstance(expression, str) or len(expression) > 400:
+@@ -63,12 +62,0 @@
+-        if isinstance(node, ast.Compare) and len(node.ops) == 1:
+-            a, b = visit(node.left), visit(node.comparators[0])
+-            if a.dimension != b.dimension:
+-                raise ValueError('incompatible_comparison_units')
+-            op = node.ops[0]
+-            if isinstance(op, ast.Gt): return a.value > b.value
+-            if isinstance(op, ast.Lt): return a.value < b.value
+-            if isinstance(op, ast.GtE): return a.value >= b.value
+-            if isinstance(op, ast.LtE): return a.value <= b.value
+-            if isinstance(op, ast.Eq): return a.value == b.value
+-            if isinstance(op, ast.NotEq): return a.value != b.value
+-            raise ValueError('unsupported_comparison')
+@@ -103,2 +90,0 @@
+-        if type(result) is bool:
+-            return result
+@@ -121 +107 @@
+-        if not re.fullmatch(r'[a-z][a-z0-9_]{0,63}', name) or not isinstance(operand, dict):
++        if not re.fullmatch(r'[a-z][a-z0-9_]{0,15}', name) or not isinstance(operand, dict):
+@@ -143,21 +128,0 @@
+-
+-
+-def canonical_plan(plan):
+-    """Remove only an explicit final percentage display factor, not inner math.
+-
+-Models commonly express percent as (a/b)*100. Convert that presentation to
+-ratio before unit execution to avoid applying the output scale twice.
+-"""
+-    if plan.get('output_unit') != 'percent':
+-        return plan
+-    expression = plan.get('expression')
+-    if not isinstance(expression, str) or len(expression) > 800:
+-        raise ValueError('invalid_expression')
+-    tree = ast.parse(expression, mode='eval').body
+-    if isinstance(tree, ast.BinOp) and isinstance(tree.op, ast.Mult):
+-        if isinstance(tree.right, ast.Constant) and tree.right.value == 100:
+-            expression = ast.get_source_segment(expression, tree.left)
+-        elif isinstance(tree.left, ast.Constant) and tree.left.value == 100:
+-            expression = ast.get_source_segment(expression, tree.right)
+-    return {**plan, 'output_unit': 'ratio', 'expression': expression,
+-            'original_output_unit': 'percent', 'original_expression': plan.get('expression')}
+--- a/evidence_lab/numeric.py
++++ b/evidence_lab/numeric.py
+@@ -10 +10 @@
+-from .calculator import UNITS, execute_plan, canonical_plan
++from .calculator import UNITS, execute_plan
+@@ -29,3 +29 @@
+-Expression supports + - * / ** and parentheses, or a single > < >= <= == !=
+-comparison for a yes/no question. Operand variable names may be up to 64 characters.
+-Small integer constants 0..100
++Expression supports + - * / ** and parentheses. Small integer constants 0..100
+@@ -40,3 +38,2 @@
+-For numeric yes/no comparisons use status=ready with cited operands and a comparison
+-expression. Non-numeric yes/no only: status=boolean, answer=yes/no, evidence_ids;
+-that fallback receives citation checks but is not calculator-verified.
++For a yes/no comparison only, use status=boolean, answer=yes/no, evidence_ids;
++this receives citation checks but is not calculator-verified.
+@@ -107 +103,0 @@
+-        plan = canonical_plan(plan)
+@@ -109 +105 @@
+-    except (ValueError, TypeError, KeyError, AttributeError, ArithmeticError, SyntaxError) as exc:
++    except (ValueError, TypeError, KeyError, ArithmeticError, SyntaxError) as exc:
+@@ -113,8 +109,5 @@
+-    if type(calculated) is bool:
+-        answer = 'yes' if calculated else 'no'
+-        if not calculator and plan.get('answer') not in ('yes', 'no'):
+-            return None, 'needs_review', ['missing_boolean_estimate'], plan
+-        return (answer if calculator else plan['answer']), ('validated_calculation' if calculator else 'model_estimate'), \
+-            (['model_comparison_corrected'] if calculator and answer != plan.get('answer') else []), \
+-            {**plan, 'verified_evidence_ids': refs, 'output_unit': 'boolean'}
+-    percent_output = plan.get('original_output_unit') == 'percent'
++    # A valid percent-scale result is deterministically normalized to a ratio.
++    percent_output = plan.get('output_unit') == 'percent'
++    if percent_output:
++        calculated /= 100
++        plan = {**plan, 'output_unit': 'ratio', 'original_output_unit': 'percent'}
+@@ -123,3 +115,0 @@
+-    ratio_question = re.search(r'\bwhat (?:is the )?(?:percentage|percent|portion|fraction)\b|\bas a percent|\bpercentage (?:change|increase|decrease|return)\b', question_text.lower())
+-    if ratio_question and unit.startswith(('money', 'count')):
+-        return None, 'needs_review', ['question_requires_ratio'], plan
+--- a/evidence_lab/workflow_experiment.py
++++ b/evidence_lab/workflow_experiment.py
+@@ -73 +73 @@
+-    manifest = {'version': 'workflow-v4', 'frozen_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
++    manifest = {'version': 'workflow-v3', 'frozen_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+--- a/tests/test_workflow.py
++++ b/tests/test_workflow.py
+@@ -90,13 +89,0 @@
+-        p['expression'] = '(a / b) * 100'
+-        self.assertEqual(validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}])[0], .5)
+-
+-    def test_descriptive_variables_boolean_and_ratio_question(self):
+-        p = {'status': 'ready', 'expression': 'very_long_descriptive_amount > second_amount', 'output_unit': 'number', 'answer': 'yes',
+-             'operands': {'very_long_descriptive_amount': {'fact_id': 'x', 'source_token': '5', 'unit': 'money'},
+-                          'second_amount': {'fact_id': 'x', 'source_token': '10', 'unit': 'money'}}}
+-        answer, status, flags, _ = validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}])
+-        self.assertEqual(answer, 'no')
+-        self.assertIn('model_comparison_corrected', flags)
+-        p['expression'] = 'second_amount - very_long_descriptive_amount'
+-        p['output_unit'] = 'money'
+-        self.assertIsNone(validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}], question_text='what portion is held here?')[0])
+@@ -147 +133,0 @@
+-        q = replace(q, question='What was the developed technology amount?')

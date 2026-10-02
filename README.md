@@ -19,13 +19,26 @@ python3 -m unittest discover -s tests -v
 - [完整实验报告与逐题依据](docs/lab/experiment-report.md)
 - [泛化与消融实验：FinQA 1,147题 + AFAC六组消融](docs/lab/generalization-report.md)
 - [真实模型试验：ecnu-plus，60题四组对照](docs/lab/model-evaluation-report.md)
+- [工作流修复与统一入口复测](docs/lab/workflow-repair-report.md)
 - [4条简历候选表述](docs/lab/resume.md)
 
 2026-09-30 新增外部检索评测：FinQA 已给定上下文内的证据 Recall@5 为 **80.60%**，全部标注证据进入 top-5 的比例为 **68.96%**；AFAC 去掉文档覆盖优先后完整覆盖 **95→91/100**，去掉逐选项查询后 **95→87/100**。FinQA 上复杂评分相对简化评分的优势很小，探索性区间包含零；混合文本/表格取证仍有明显短板。
 
-随后通过本地API配置实际调用 `ecnu-plus`（返回模型 `qwen3.8-27b`）：60题均衡子集上，完整检索直接答案匹配 **26/60**，简化检索 **24/60**，标注证据诊断组 **33/60**；208次正式请求成功，35项测试通过。此为小样本直接答案评测，不是FinQA官方程序执行准确率；区间较宽，不能宣称完整检索显著优于简化检索。配置默认从仓库上一层的 `api-config.local.env` 读取，密钥不进入Git或日志。
+随后通过本地API配置实际调用 `ecnu-plus`（返回模型 `qwen3.8-27b`）：60题均衡子集上，单轮完整检索评分基线的直接答案匹配 **26/60**，简化检索 **24/60**，标注证据诊断组 **33/60**；208次正式请求成功，35项测试通过。此为小样本直接答案评测，不是FinQA官方程序执行准确率；区间较宽，不能宣称完整检索显著优于简化检索。配置默认从仓库上一层的 `api-config.local.env` 读取，密钥不进入Git或日志。
 
-案例复核还发现部分参考程序与题意冲突、单位不一致和表格转换歧义，详见真实模型报告的错误诊断。原始匹配分数保持不变，不能直接作为人工核验后的业务正确率。
+代码审计确认，上述 v1 真实模型实验是“缓存 top-5 → 一次模型调用”的独立脚本，未运行主项目的证据打包、审计或补检；`full` 指完整检索评分，不是完整 Agent。原始结果保留作单轮基线。
+
+2026-10-02 修复：生产 CLI 与 v2 实验统一调用 `runner.run → workflow.run_question`；恢复选择题补检；数值题保留原始表格单元格、生成带引用的运算计划、执行安全计算器、统一单位尺度并对缺证/校验失败进行有界补检。旧的 `agent/` 保持原样，新增实现和验证见[修复报告](docs/lab/workflow-repair-report.md)。54 项测试通过；最终回归组与另一个新样本组均匹配 6/12，但同题旧单轮基线为 7/12，尚未证明整体效果提升。
+
+```bash
+# 虚构数值题离线预览，不读取密钥、不调用模型
+python3 -m evidence_lab run --data examples/numeric --out runs/numeric-offline
+# 使用仓库上一层的 api-config.local.env 调用真实模型
+python3 -m evidence_lab run --data examples/numeric --out runs/numeric-model \
+  --judge-mode openai_compatible --use-local-api --max-requests 6
+```
+
+案例复核同时发现部分参考程序与题意冲突；评分仍使用原标签，不能把直接匹配率当成人工核验后的业务正确率。
 
 以下保留上游 README 作为来源记录，其中历史结果、服务器路径和既有产物均不代表本项目的新增成果。
 

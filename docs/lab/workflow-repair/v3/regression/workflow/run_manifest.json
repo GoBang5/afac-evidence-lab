@@ -1,0 +1,72 @@
+{
+  "fingerprint": "68221e9c5fe7768f1d109b82223ef828fddc36e483061b459de9bd8e9234054b",
+  "data": {
+    "selector.jsonl": "ab9e406aab0bc0b2545fc4f2c90794103bfce5f41b45e4cb75bf5a7451d820be",
+    "docs.jsonl": "301e5b6fd949f5294cef926f3cf41f42f9472c8f0c2a5c2c3f66b39a9dbae374",
+    "questions.jsonl": "add6cdc7419adedc0053491fa5e49c17bb959f443d9872828052521305364ab7"
+  },
+  "sources": {
+    "evidence_lab/__init__.py": "536fd19e348235f3d8562b2cf0d22fecd2a6d015f7a70dfc134d717eb169f2af",
+    "evidence_lab/__main__.py": "45263de8bba60ebdd88a4f070699c0d9499211ef5edb9c412befe30dcedfbeac",
+    "evidence_lab/api_config.py": "9c19b267dd7fbf5de5a83682491099aad8a41f3030725deba4f3baa45776eadf",
+    "evidence_lab/audit.py": "b328bae3eaecb8035e76325e5fe2c433458231e12dbb8e2afe922dd05d22db44",
+    "evidence_lab/benchmark.py": "082894d3e2273737fcf5655feb8c1e44488c1c9f1c6728594d2e57f8ae9d3e7c",
+    "evidence_lab/budget.py": "1ec51af606ed8d6a5b41d02828e2165c125aba788e3eaa132f57f9454ff67bc0",
+    "evidence_lab/calculator.py": "48b01448d5b1495c8fcec1bc426997df0bb53b92bd72d08b81281a638f7597f9",
+    "evidence_lab/checkpoint.py": "f37f99e80668dd34aebf69676e32dd01cd808b2c7928672571c009c0086bba4d",
+    "evidence_lab/client.py": "9893667055eaf514fd9f4832aa4be082668448f6fa40348d969d28c3adf1ba8c",
+    "evidence_lab/data.py": "36b32ea33aeb2d7a97b9789f559ccdf16c1524fdbd454c13b90d64e9dd58c6c7",
+    "evidence_lab/experiments.py": "1748c3fec1768ebe6cfafa1d483e96a06d3324d539c8ff674faefb8aa40166ed",
+    "evidence_lab/local_judge.py": "5f65e02f472bb8aba635e605bf8dd3080eabfc78f16e4900d6f7ab1b544adb5f",
+    "evidence_lab/model_experiment.py": "bff8ccd63125fac64229efa31ec418a6c16b613249c7cafae0cd510727f91ca0",
+    "evidence_lab/numeric.py": "c00ad4a67f375af13f602433917d0999486b49a1b6308f449a4c9bc40ee9e1e4",
+    "evidence_lab/retrieval.py": "e0e6ea59e01810f9c88194b750bd8c84044344ad80b292a2f3b56aaf835389c5",
+    "evidence_lab/runner.py": "b874a8f05b9cf94a6cd1830dacee089ba9a64498ff4d7fbb7d409ca6e2ccc8b1",
+    "evidence_lab/workflow.py": "44a13f677db3a8b9159f51ce7b4bff48de607c2f2763604ead780001479f5529",
+    "evidence_lab/workflow_experiment.py": "9e267ba439b4ab5cc903480f254440fbd0c5b7b4f4eec37b4684cc68298551d3",
+    "agent/__init__.py": "87b23107fff3b6c1fe87675bd105a2ac17055d17c1681139fff15350f1532b5c",
+    "agent/config.py": "40cd2f5d1a31b019167e09db5210662813953f10c68c48ca73aa55dc1f94b06b",
+    "agent/domain_rules.py": "ce0cc61cc4a1baf30516cb037bdfd44e9bd3fd8fd47852d51825ffb7f4f557d8",
+    "agent/io_utils.py": "5d55bb36b82420c197a295e9f3279a7db0320456206a9feff20c479f6f14c81f",
+    "agent/judge.py": "3fca9c4fad35925951f3dc921455ad1f4f4aab866af475f5295be198fac5b5ff",
+    "agent/main.py": "ce8ddbcbdfe2c1395ef27407b491b5f99d41ddf2b3493c1c09c5d132635d2ded",
+    "agent/model_client.py": "5d172a86a96b8ae001c72d2b3a2ed55fbdbd8c3e5fde8d3f4eb46f6fa0e458d0",
+    "agent/packer.py": "099dade16726449e85a21b6dd51348d33132868b7f2fbf6dea8f680839f7564d",
+    "agent/prompting.py": "a6a8a3d172d7847288dde466e07922ad65f4882b29a7d90cac0d5a1053f706f7",
+    "agent/repair.py": "42f0168c4ff4cc284ec1d6ef4d08406d6a79a8456d698a3e309b58339877fd5c",
+    "agent/retrieval.py": "5c21c603339a7d82a51a7dc64c62c3d210daea39447600ebf842b4d7b9379feb",
+    "agent/runner.py": "76e1927efe4465c6820d4fbafa3aaf841b0ba0798bab675d228026cf26e4263d",
+    "agent/schema.py": "7a8b9703cf1133364e9bfe2bbf6808655280ae003229275794b051bef262796d",
+    "agent/text.py": "cd6fe3024c6d7afa436fc1b32607cbedad4855ec2bbf4839e3e2eb999bc21fd1",
+    "agent/verify.py": "a94e2931d2aedd2529c1371276f4c75ef7e11bcd64f261d7381916356ee474ee"
+  },
+  "budget": {
+    "max_prompt_chars": 12000,
+    "max_evidence": 18,
+    "max_quote_chars": 900
+  },
+  "judge": {
+    "judge_mode": "openai_compatible",
+    "llm_model": "ecnu-plus",
+    "llm_base_url": "https://chat.ecnu.edu.cn/open/api/v1",
+    "llm_temperature": 0.0,
+    "llm_max_tokens": 1536
+  },
+  "retrieval": {
+    "option_top_k": 6,
+    "question_top_k": 14,
+    "doc_top_k_b": 16
+  },
+  "repair": {
+    "rounds": 1,
+    "top_k": 4
+  },
+  "numeric": {
+    "top_k": 5,
+    "repair_top_k": 12,
+    "max_repair_rounds": 1,
+    "calculator": true,
+    "max_tokens": 1400
+  },
+  "max_requests": 84
+}

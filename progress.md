@@ -1,5 +1,7 @@
 # Progress Index
 
+- [2026-10-02 工作流修复](1-progress/progreess-2026-10-02.md)：统一生产/评测入口，补检与安全计算，54测试通过；真实复测保留失败迭代，未证明整体准确率提升。
+
 Use this file as the short navigation index. Detailed handoff notes live in daily files under `1-progress/`.
 
 - [2026-09-30 真实模型](1-progress/progreess-2026-09-30.md#真实模型评测与配置纠正): 读取已提供的本地API配置，完成ecnu-plus 60题四组真实试验，208次正式调用，35项测试通过。

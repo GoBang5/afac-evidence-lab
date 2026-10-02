@@ -1,0 +1,119 @@
+{
+  "tests": 54,
+  "frozen_source_matches_final": true,
+  "resume_new_requests": 0,
+  "resume_scores_sha256_unchanged": "7f5869b53efdcb2cf025cebcf486bcc933a078772053b6a01bcc6feb0108a2d4",
+  "first_pass_summaries": {
+    "heldout/workflow/summary.json": {
+      "questions_requested": 12,
+      "completed": 12,
+      "reused": 0,
+      "failures": [],
+      "elapsed_seconds": 27.034637583999995,
+      "status": {
+        "validated_calculation": 8,
+        "needs_review": 4
+      },
+      "total_tokens": 42736,
+      "answer_accuracy": null,
+      "mode": "openai_compatible",
+      "fingerprint": "947cbf89388288ab5f8262e86292174d6f7d7433ba59f7b2e573d2a33559cda6",
+      "new_model_requests": 20,
+      "repair_rounds": 8
+    },
+    "regression/no_arithmetic_correction/summary.json": {
+      "questions_requested": 12,
+      "completed": 12,
+      "reused": 0,
+      "failures": [],
+      "elapsed_seconds": 0.11838883399999744,
+      "status": {
+        "model_estimate": 6,
+        "needs_review": 6
+      },
+      "total_tokens": 40856,
+      "answer_accuracy": null,
+      "mode": "openai_compatible",
+      "fingerprint": "77bb97605167e894a9b7dc5a61e6a673b9cd0d790b57d95c4267beed22030748",
+      "new_model_requests": 0,
+      "repair_rounds": 7
+    },
+    "regression/no_repair/summary.json": {
+      "questions_requested": 12,
+      "completed": 12,
+      "reused": 0,
+      "failures": [],
+      "elapsed_seconds": 0.04067254199999937,
+      "status": {
+        "validated_calculation": 5,
+        "needs_review": 7
+      },
+      "total_tokens": 19428,
+      "answer_accuracy": null,
+      "mode": "openai_compatible",
+      "fingerprint": "d2729af158091848d01c67cc61123fe302dd59ec43dcdf0349dcd6a4669bc694",
+      "new_model_requests": 0,
+      "repair_rounds": 0
+    },
+    "regression/workflow/summary.json": {
+      "questions_requested": 12,
+      "completed": 12,
+      "reused": 0,
+      "failures": [],
+      "elapsed_seconds": 24.640001542,
+      "status": {
+        "validated_calculation": 6,
+        "needs_review": 6
+      },
+      "total_tokens": 40856,
+      "answer_accuracy": null,
+      "mode": "openai_compatible",
+      "fingerprint": "124dadaa97edd83b0f32a4b757f147e9eee3bae2d25ea012dd05ec46ccf66458",
+      "new_model_requests": 19,
+      "repair_rounds": 7
+    }
+  },
+  "real_experiments": [
+    {
+      "version": "v2",
+      "physical_requests": 42,
+      "served_models": [
+        "qwen3.8-27b"
+      ],
+      "usage_reported": {
+        "prompt_tokens": 77114,
+        "completion_tokens": 5389,
+        "total_tokens": 82503
+      }
+    },
+    {
+      "version": "v3",
+      "physical_requests": 36,
+      "served_models": [
+        "qwen3.8-27b"
+      ],
+      "usage_reported": {
+        "prompt_tokens": 70844,
+        "completion_tokens": 4874,
+        "total_tokens": 75718
+      }
+    },
+    {
+      "version": "v4",
+      "physical_requests": 39,
+      "served_models": [
+        "qwen3.8-27b"
+      ],
+      "usage_reported": {
+        "prompt_tokens": 78640,
+        "completion_tokens": 4952,
+        "total_tokens": 83592
+      }
+    }
+  ],
+  "synthetic_requests": 9,
+  "total_new_physical_requests": 126,
+  "holdout_excludes_prior_model_pilots": true,
+  "old_v1_results_preserved": true,
+  "scope": "exploratory engineering validation; no significant gain claimed"
+}

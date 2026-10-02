@@ -1,0 +1,12 @@
+{"qid": "PNC/2012/page_247.pdf-4", "expected": 45.0, "gold_facts": ["text_26"], "stratum": "text", "company": "PNC"}
+{"qid": "ECL/2016/page_52.pdf-1", "expected": 0.00543, "gold_facts": ["text_3"], "stratum": "text", "company": "ECL"}
+{"qid": "PNC/2012/page_174.pdf-2", "expected": 1167.0, "gold_facts": ["text_6"], "stratum": "text", "company": "PNC"}
+{"qid": "GS/2013/page_85.pdf-2", "expected": 179.345, "gold_facts": ["text_1", "text_15"], "stratum": "text", "company": "GS"}
+{"qid": "ETR/2011/page_301.pdf-2", "expected": 12872.0, "gold_facts": ["table_2"], "stratum": "table", "company": "ETR"}
+{"qid": "UNP/2015/page_56.pdf-3", "expected": 0.19898, "gold_facts": ["table_6", "table_7"], "stratum": "table", "company": "UNP"}
+{"qid": "DISCA/2011/page_49.pdf-3", "expected": 1.26067, "gold_facts": ["table_3", "table_4"], "stratum": "table", "company": "DISCA"}
+{"qid": "DISCA/2011/page_49.pdf-4", "expected": "no", "gold_facts": ["table_1", "table_2"], "stratum": "table", "company": "DISCA"}
+{"qid": "TFX/2015/page_89.pdf-3", "expected": 7989.0, "gold_facts": ["table_4", "text_19", "text_20", "table_3"], "stratum": "mixed", "company": "TFX"}
+{"qid": "BLL/2010/page_37.pdf-4", "expected": 765.2, "gold_facts": ["table_1", "text_3"], "stratum": "mixed", "company": "BLL"}
+{"qid": "IP/2006/page_30.pdf-1", "expected": 0.07157, "gold_facts": ["table_1", "text_35"], "stratum": "mixed", "company": "IP"}
+{"qid": "FIS/2006/page_31.pdf-1", "expected": 0.13194, "gold_facts": ["table_4", "text_10", "table_8"], "stratum": "mixed", "company": "FIS"}

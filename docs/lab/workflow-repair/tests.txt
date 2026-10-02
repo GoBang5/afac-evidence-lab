@@ -1,0 +1,67 @@
+test_adapter_isolates_gold_and_rejects_overwrite (test_experiments.ExperimentsTests) ... ok
+test_corrected_table_template_and_fact_numbering (test_experiments.ExperimentsTests) ... ok
+test_disabled_priority_still_measures_original_goals (test_experiments.ExperimentsTests) ... ok
+test_gold_mutation_cannot_change_inference (test_experiments.ExperimentsTests) ... ok
+test_no_option_queries_and_numeric_ablation (test_experiments.ExperimentsTests) ... ok
+test_paired_bootstrap_uses_question_pairs_and_company_clusters (test_experiments.ExperimentsTests) ... ok
+test_recall_denominator_is_gold_not_returned_count (test_experiments.ExperimentsTests) ... ok
+test_unmapped_or_empty_gold_rejected (test_experiments.ExperimentsTests) ... ok
+test_label_exclusion_page_boundaries_and_hashes (test_lab.AdapterTests) ... ok
+test_contradictory_answer_rejected (test_lab.AuditTests) ... ok
+test_hallucinated_citation_rejected (test_lab.AuditTests) ... ok
+test_structural_validation_not_semantic_proof (test_lab.AuditTests) ... ok
+test_tampered_quote_rejected (test_lab.AuditTests) ... ok
+test_unknown_verdict_needs_review (test_lab.AuditTests) ... ok
+test_cover_low_score_document_if_fits (test_lab.BudgetTests) ... ok
+test_duplicate_id_deduplicated_provenance_preserved (test_lab.BudgetTests) ... ok
+test_global_budget_counts_question_and_metadata (test_lab.BudgetTests) ... ok
+test_impossible_budget_fails_before_model_call (test_lab.BudgetTests) ... ok
+test_zero_limits_rejected (test_lab.BudgetTests) ... ok
+test_changed_config_cannot_reuse_output (test_lab.ResumeTests) ... ok
+test_checkpoint_isolated_by_fingerprint (test_lab.ResumeTests) ... ok
+test_model_adapter_prompt_usage_and_audit_integrated (test_lab.ResumeTests) ... ok
+test_model_failure_not_checkpointed (test_lab.ResumeTests) ... ok
+test_partial_resume_skips_completed_questions (test_lab.ResumeTests) ... ok
+test_prior_answers_not_allowed (test_lab.ResumeTests) ... ok
+test_qwen_default_gate_blocks_before_transport (test_lab.ResumeTests) ... ok
+test_duplicate_candidate_id_rejected (test_lab.RetrievalTests) ... ok
+test_exact_upstream_scores_features_and_ranks_twice (test_lab.RetrievalTests) ... ok
+test_unknown_document_reports_missing (test_lab.RetrievalTests) ... ok
+test_changed_prepared_input_rejected_before_transport (test_model_experiment.ModelExperimentTests) ... ok
+test_config_is_data_not_shell (test_model_experiment.ModelExperimentTests) ... ok
+test_identical_prompts_reused_and_resume_no_calls (test_model_experiment.ModelExperimentTests) ... jobs=1/12 new_calls=1
+jobs=11/12 new_calls=6
+jobs=1/12 new_calls=0
+jobs=11/12 new_calls=0
+ok
+test_missing_config_and_embedded_credentials_rejected (test_model_experiment.ModelExperimentTests) ... ok
+test_numeric_rounding_percent_and_no_scale_guess (test_model_experiment.ModelExperimentTests) ... ok
+test_prepare_separates_answers_and_inference (test_model_experiment.ModelExperimentTests) ... ok
+test_currency_percent_and_output_scale (test_workflow.CalculatorTests) ... ok
+test_descriptive_variables_boolean_and_ratio_question (test_workflow.CalculatorTests) ... ok
+test_hallucinated_amount_and_substring_rejected (test_workflow.CalculatorTests) ... ok
+test_inconsistent_answer_replaced_by_executed_value (test_workflow.CalculatorTests) ... ok
+test_parentheses_commas_and_unit_conversion (test_workflow.CalculatorTests) ... ok
+test_percent_output_converted_to_ratio_without_model_retry (test_workflow.CalculatorTests) ... ok
+test_question_unit_constraint_and_punctuation_tokens (test_workflow.CalculatorTests) ... ok
+test_truncated_json_and_bad_citation_never_accepted (test_workflow.CalculatorTests) ... ok
+test_unsafe_expression_zero_division_and_wrong_units_rejected (test_workflow.CalculatorTests) ... ok
+test_experiment_calls_production_runner_and_scores_after_predictions (test_workflow.WorkflowTests) ... {"cohort": "regression", "arm": "workflow", "questions_requested": 3, "completed": 3, "reused": 0, "failures": [], "elapsed_seconds": 0.0077368329999999985, "status": {"validated_calculation": 3}, "total_tokens": 45, "answer_accuracy": null, "mode": "openai_compatible", "fingerprint": "988f49d15ae164e5b6fcb489b28f58d4f3f3bb0a5e3bfabfc993bbdf2d0f1fdd", "new_model_requests": 3, "repair_rounds": 0}
+{"cohort": "regression", "arm": "no_repair", "questions_requested": 3, "completed": 3, "reused": 0, "failures": [], "elapsed_seconds": 0.0039843749999999845, "status": {"validated_calculation": 3}, "total_tokens": 45, "answer_accuracy": null, "mode": "openai_compatible", "fingerprint": "192e33a86bac499c2bb70e76b1e0123ae60afd6311615d8783a5e46a98e3fe1a", "new_model_requests": 0, "repair_rounds": 0}
+{"cohort": "regression", "arm": "no_arithmetic_correction", "questions_requested": 3, "completed": 3, "reused": 0, "failures": [], "elapsed_seconds": 0.0028144999999999976, "status": {"model_estimate": 3}, "total_tokens": 45, "answer_accuracy": null, "mode": "openai_compatible", "fingerprint": "c1033f1063806d9e591f2ba43c0108b0d335d89ffdad13cf4c4599ed9a794bf6", "new_model_requests": 0, "repair_rounds": 0}
+{"cohort": "heldout", "arm": "workflow", "questions_requested": 3, "completed": 3, "reused": 0, "failures": [], "elapsed_seconds": 0.005166333999999995, "status": {"validated_calculation": 3}, "total_tokens": 45, "answer_accuracy": null, "mode": "openai_compatible", "fingerprint": "9050f48b3b543db007cc1a584f99d2ea35e77d7543e0d30b5df55ae4bc37c3d2", "new_model_requests": 3, "repair_rounds": 0}
+ok
+test_headers_align_year_columns_including_numeric_first_column (test_workflow.WorkflowTests) ... ok
+test_mcq_unknown_really_invokes_repair_and_accumulates_usage (test_workflow.WorkflowTests) ... ok
+test_no_repair_arm_stops_and_invalid_plan_is_not_published (test_workflow.WorkflowTests) ... ok
+test_numeric_offline_never_reads_key_or_calls (test_workflow.WorkflowTests) ... ok
+test_raw_table_preserved_without_fake_column_header (test_workflow.WorkflowTests) ... ok
+test_repair_fetches_numeric_only_table_row_missing_from_rankings (test_workflow.WorkflowTests) ... ok
+test_shared_runner_repairs_and_resume_spends_nothing (test_workflow.WorkflowTests) ... ok
+test_unknown_outcome_and_request_cap_do_not_rebill (test_workflow.WorkflowTests) ... ok
+test_whole_unit_budget_never_truncates_table (test_workflow.WorkflowTests) ... ok
+
+----------------------------------------------------------------------
+Ran 54 tests in 0.195s
+
+OK

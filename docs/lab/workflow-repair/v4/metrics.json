@@ -1,0 +1,42 @@
+[
+  {
+    "cohort": "regression",
+    "arm": "workflow",
+    "n": 12,
+    "correct": 6,
+    "abstained": 6,
+    "all_gold_in_context": 11,
+    "repair_rounds": 7,
+    "logical_tokens": 40856
+  },
+  {
+    "cohort": "regression",
+    "arm": "no_repair",
+    "n": 12,
+    "correct": 5,
+    "abstained": 7,
+    "all_gold_in_context": 5,
+    "repair_rounds": 0,
+    "logical_tokens": 19428
+  },
+  {
+    "cohort": "regression",
+    "arm": "no_arithmetic_correction",
+    "n": 12,
+    "correct": 6,
+    "abstained": 6,
+    "all_gold_in_context": 11,
+    "repair_rounds": 7,
+    "logical_tokens": 40856
+  },
+  {
+    "cohort": "heldout",
+    "arm": "workflow",
+    "n": 12,
+    "correct": 6,
+    "abstained": 4,
+    "all_gold_in_context": 10,
+    "repair_rounds": 8,
+    "logical_tokens": 42736
+  }
+]

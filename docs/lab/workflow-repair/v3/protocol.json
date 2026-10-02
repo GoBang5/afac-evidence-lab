@@ -1,0 +1,63 @@
+{
+  "version": "workflow-v3",
+  "frozen_at": "2026-10-02T14:37:19.204889+00:00",
+  "sampling": "first SHA256(workflow-v2:qid), per evidence type; holdout excludes all 60 v1 questions",
+  "scope": "small exploratory regression/heldout pilot; no significance claim",
+  "source_sha256": "831dbfb2e785dbc227f895ce3f24046433467aec67b09db2bd6ac7692a8a30dc",
+  "old_labels_sha256": "67324387201eb1c2c72162b6029eb0f33165b300b0d83ce9e8ebda5e7d568f0c",
+  "excluded_heldout_ids": [
+    "ADI/2011/page_61.pdf-2",
+    "AON/2015/page_96.pdf-2",
+    "AON/2018/page_87.pdf-4",
+    "BLK/2017/page_121.pdf-2",
+    "BLL/2012/page_31.pdf-4",
+    "DRE/2008/page_46.pdf-4",
+    "ETR/2015/page_17.pdf-3",
+    "MSI/2012/page_87.pdf-1",
+    "MSI/2012/page_87.pdf-4",
+    "PNC/2012/page_68.pdf-3",
+    "PPG/2008/page_52.pdf-2",
+    "VRTX/2006/page_111.pdf-1"
+  ],
+  "budget": {
+    "max_prompt_chars": 12000,
+    "max_evidence": 18,
+    "max_quote_chars": 900
+  },
+  "arms": {
+    "workflow": {
+      "top_k": 5,
+      "repair_top_k": 12,
+      "max_repair_rounds": 1,
+      "calculator": true,
+      "max_tokens": 1400
+    },
+    "no_repair": {
+      "top_k": 5,
+      "repair_top_k": 12,
+      "max_repair_rounds": 0,
+      "calculator": true,
+      "max_tokens": 1400
+    },
+    "no_arithmetic_correction": {
+      "top_k": 5,
+      "repair_top_k": 12,
+      "max_repair_rounds": 1,
+      "calculator": false,
+      "max_tokens": 1400
+    }
+  },
+  "metric": "v1 direct numeric match, unchanged labels and five-decimal rounding; not official execution accuracy",
+  "max_requests_total": 84,
+  "identical_prompts": "shared source/model/payload cache across arms; isolates arithmetic correction",
+  "files_sha256": {
+    "regression-labels.jsonl": "50c1d19d0441807a5197e35efcc1ee1871905329e9e55205435f93936ba4742b",
+    "heldout-labels.jsonl": "da47def4ff8e4691cb510216090350be3e6a80f135bf437afc133b4e70caaeb4",
+    "heldout/selector.jsonl": "eb1823d188f52ffadfb4f2dc6a08b591e85ccd7b549dc8d1da2cf20c52f71cfe",
+    "heldout/docs.jsonl": "783764104524175cf68980fc9f86120b0598ab062d4d7b878971d5dd740b27e5",
+    "heldout/questions.jsonl": "31347014ad4563e09d0f6c3292955d1418af184500bc4c7c7a977551c89e6cda",
+    "regression/selector.jsonl": "ab9e406aab0bc0b2545fc4f2c90794103bfce5f41b45e4cb75bf5a7451d820be",
+    "regression/docs.jsonl": "301e5b6fd949f5294cef926f3cf41f42f9472c8f0c2a5c2c3f66b39a9dbae374",
+    "regression/questions.jsonl": "add6cdc7419adedc0053491fa5e49c17bb959f443d9872828052521305364ab7"
+  }
+}

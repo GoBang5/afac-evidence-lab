@@ -1,0 +1,12 @@
+{"qid": "SNA/2007/page_69.pdf-1", "expected": 0.41667, "gold_facts": ["text_9"], "stratum": "text", "company": "SNA"}
+{"qid": "PNC/2012/page_174.pdf-4", "expected": 1167.0, "gold_facts": ["text_6"], "stratum": "text", "company": "PNC"}
+{"qid": "BLK/2014/page_120.pdf-3", "expected": -0.0365, "gold_facts": ["text_25"], "stratum": "text", "company": "BLK"}
+{"qid": "LMT/2014/page_77.pdf-3", "expected": 0.00162, "gold_facts": ["text_1", "text_2"], "stratum": "text", "company": "LMT"}
+{"qid": "ETFC/2012/page_43.pdf-2", "expected": 1.15217, "gold_facts": ["table_1"], "stratum": "table", "company": "ETFC"}
+{"qid": "BLL/2006/page_67.pdf-3", "expected": 0.51221, "gold_facts": ["table_3", "table_7"], "stratum": "table", "company": "BLL"}
+{"qid": "JPM/2008/page_117.pdf-2", "expected": 70000000.0, "gold_facts": ["table_1", "table_2"], "stratum": "table", "company": "JPM"}
+{"qid": "MO/2016/page_19.pdf-2", "expected": "yes", "gold_facts": ["table_6"], "stratum": "table", "company": "MO"}
+{"qid": "RSG/2010/page_98.pdf-2", "expected": 3.39489, "gold_facts": ["table_5", "text_10", "text_19"], "stratum": "mixed", "company": "RSG"}
+{"qid": "BLK/2015/page_124.pdf-1", "expected": 0.4655, "gold_facts": ["table_6", "table_7", "text_25"], "stratum": "mixed", "company": "BLK"}
+{"qid": "GPN/2008/page_78.pdf-1", "expected": 292.21429, "gold_facts": ["table_2", "text_12"], "stratum": "mixed", "company": "GPN"}
+{"qid": "K/2006/page_52.pdf-3", "expected": -1047.5, "gold_facts": ["text_4", "table_1"], "stratum": "mixed", "company": "K"}

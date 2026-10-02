@@ -1,0 +1,202 @@
+--- a/evidence_lab/calculator.py
++++ b/evidence_lab/calculator.py
+@@ -47 +47 @@
+-    if not isinstance(expression, str) or len(expression) > 800:
++    if not isinstance(expression, str) or len(expression) > 400:
+@@ -63,12 +62,0 @@
+-        if isinstance(node, ast.Compare) and len(node.ops) == 1:
+-            a, b = visit(node.left), visit(node.comparators[0])
+-            if a.dimension != b.dimension:
+-                raise ValueError('incompatible_comparison_units')
+-            op = node.ops[0]
+-            if isinstance(op, ast.Gt): return a.value > b.value
+-            if isinstance(op, ast.Lt): return a.value < b.value
+-            if isinstance(op, ast.GtE): return a.value >= b.value
+-            if isinstance(op, ast.LtE): return a.value <= b.value
+-            if isinstance(op, ast.Eq): return a.value == b.value
+-            if isinstance(op, ast.NotEq): return a.value != b.value
+-            raise ValueError('unsupported_comparison')
+@@ -103,2 +90,0 @@
+-        if type(result) is bool:
+-            return result
+@@ -121 +107 @@
+-        if not re.fullmatch(r'[a-z][a-z0-9_]{0,63}', name) or not isinstance(operand, dict):
++        if not re.fullmatch(r'[a-z][a-z0-9_]{0,15}', name) or not isinstance(operand, dict):
+@@ -143,21 +128,0 @@
+-
+-
+-def canonical_plan(plan):
+-    """Remove only an explicit final percentage display factor, not inner math.
+-
+-Models commonly express percent as (a/b)*100. Convert that presentation to
+-ratio before unit execution to avoid applying the output scale twice.
+-"""
+-    if plan.get('output_unit') != 'percent':
+-        return plan
+-    expression = plan.get('expression')
+-    if not isinstance(expression, str) or len(expression) > 800:
+-        raise ValueError('invalid_expression')
+-    tree = ast.parse(expression, mode='eval').body
+-    if isinstance(tree, ast.BinOp) and isinstance(tree.op, ast.Mult):
+-        if isinstance(tree.right, ast.Constant) and tree.right.value == 100:
+-            expression = ast.get_source_segment(expression, tree.left)
+-        elif isinstance(tree.left, ast.Constant) and tree.left.value == 100:
+-            expression = ast.get_source_segment(expression, tree.right)
+-    return {**plan, 'output_unit': 'ratio', 'expression': expression,
+-            'original_output_unit': 'percent', 'original_expression': plan.get('expression')}
+--- a/evidence_lab/numeric.py
++++ b/evidence_lab/numeric.py
+@@ -10 +10 @@
+-from .calculator import UNITS, execute_plan, canonical_plan
++from .calculator import UNITS, execute_plan
+@@ -15,4 +15 @@
+-table_0 is the raw first row and may be DATA, not a column header. When present,
+-column_labels are aligned with cells by POSITION, including the first column.
+-When a requested total is not written explicitly, sum ALL relevant rows if they
+-are present. Return insufficient if some required rows or year labels are missing.
++table_0 is the raw first row and may be DATA, not a column header.
+@@ -29,3 +26 @@
+-Expression supports + - * / ** and parentheses, or a single > < >= <= == !=
+-comparison for a yes/no question. Operand variable names may be up to 64 characters.
+-Small integer constants 0..100
++Expression supports + - * / ** and parentheses. Small integer constants 0..100
+@@ -40,3 +35,2 @@
+-For numeric yes/no comparisons use status=ready with cited operands and a comparison
+-expression. Non-numeric yes/no only: status=boolean, answer=yes/no, evidence_ids;
+-that fallback receives citation checks but is not calculator-verified.
++For a yes/no comparison only, use status=boolean, answer=yes/no, evidence_ids;
++this receives citation checks but is not calculator-verified.
+@@ -107 +100,0 @@
+-        plan = canonical_plan(plan)
+@@ -109 +102 @@
+-    except (ValueError, TypeError, KeyError, AttributeError, ArithmeticError, SyntaxError) as exc:
++    except (ValueError, TypeError, KeyError, ArithmeticError, SyntaxError) as exc:
+@@ -113,8 +106,2 @@
+-    if type(calculated) is bool:
+-        answer = 'yes' if calculated else 'no'
+-        if not calculator and plan.get('answer') not in ('yes', 'no'):
+-            return None, 'needs_review', ['missing_boolean_estimate'], plan
+-        return (answer if calculator else plan['answer']), ('validated_calculation' if calculator else 'model_estimate'), \
+-            (['model_comparison_corrected'] if calculator and answer != plan.get('answer') else []), \
+-            {**plan, 'verified_evidence_ids': refs, 'output_unit': 'boolean'}
+-    percent_output = plan.get('original_output_unit') == 'percent'
++    if plan.get('output_unit') == 'percent':
++        return None, 'needs_review', ['output_rates_must_use_ratio'], plan
+@@ -123,3 +109,0 @@
+-    ratio_question = re.search(r'\bwhat (?:is the )?(?:percentage|percent|portion|fraction)\b|\bas a percent|\bpercentage (?:change|increase|decrease|return)\b', question_text.lower())
+-    if ratio_question and unit.startswith(('money', 'count')):
+-        return None, 'needs_review', ['question_requires_ratio'], plan
+@@ -132,2 +115,0 @@
+-    if percent_output and finite:
+-        estimate /= 100
+@@ -161,2 +143 @@
+-        has_table = any(i.candidate.unit_type == 'table' for i in pool)
+-        if has_table or (round_index and any(c.unit_type == 'table' for c in index.get_candidates(docs))):
++        if any(i.candidate.unit_type == 'table' for i in pool):
+@@ -169,13 +149,0 @@
+-            if round_index:
+-                # Numeric-only rows may score poorly despite belonging to the
+-                # relevant table. Expand that table before unrelated prose.
+-                table_docs = {i.candidate.doc_id for i in pool if i.candidate.unit_type == 'table'} or set(docs)
+-                table_items = [i for i in pool if i.candidate.unit_type == 'table']
+-                for c in index.get_candidates(docs):
+-                    if c.doc_id in table_docs and c.unit_type == 'table' and c.candidate_id not in seen:
+-                        table_items.append(ScoredEvidence(c, 0, {}, None))
+-                        seen.add(c.candidate_id)
+-                table_ids = {i.candidate.candidate_id for i in table_items}
+-                caption_items = [i for i in pool if i.candidate.unit_type != 'table' and i.candidate.locator.get('fact_id') in contexts]
+-                caption_ids = {i.candidate.candidate_id for i in caption_items}
+-                pool = caption_items + table_items + [i for i in pool if i.candidate.candidate_id not in table_ids | caption_ids]
+--- a/evidence_lab/workflow_experiment.py
++++ b/evidence_lab/workflow_experiment.py
+@@ -13 +12,0 @@
+-import re
+@@ -35,9 +33,0 @@
+-    first = row['table'][0] if row['table'] else []
+-    # A conservative header rule: each nonempty cell contains no amount other
+-    # than a four-digit year. Financial amounts in row zero keep it as data.
+-    amount_free = bool(first) and any(first) and all(not re.search(r'\d', re.sub(r'\b(?:19|20)\d{2}\b', '', str(cell))) for cell in first)
+-    header_hint = bool(first) and (not str(first[0]).strip() or
+-        re.search(r'\b(?:dollars|millions|thousands|billions|year|date)\b', str(first[0]), re.I) or
+-        all(re.fullmatch(r'(?:19|20)\d{2}', str(cell)) for cell in first) or
+-        all(not re.search(r'\d', str(cell)) for cell in first))
+-    header = amount_free and header_hint
+@@ -47,4 +37 @@
+-            table_row = {'cells': row['table'][i]}
+-            if header and i != 0 and len(first) == len(row['table'][i]):
+-                table_row['column_labels'] = first
+-            candidate['text'] = json.dumps(table_row, ensure_ascii=False)
++            candidate['text'] = json.dumps({'cells': row['table'][i]}, ensure_ascii=False)
+@@ -58 +45 @@
+-def prepare(source, old_labels, out, per_type=4, exclude_heldout_labels=None):
++def prepare(source, old_labels, out, per_type=4):
+@@ -63 +49,0 @@
+-    excluded = {r['qid'] for r in read_jsonl(exclude_heldout_labels)} if exclude_heldout_labels else set()
+@@ -69,2 +54,0 @@
+-        if cohort == 'heldout' and row['id'] in excluded:
+-            continue
+@@ -73 +57 @@
+-    manifest = {'version': 'workflow-v4', 'frozen_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
++    manifest = {'version': 'workflow-v2', 'frozen_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+@@ -77 +60,0 @@
+-                'excluded_heldout_ids': sorted(excluded),
+@@ -164 +146,0 @@
+-    p.add_argument('--exclude-heldout-labels', type=Path, help='Exclude a previously inspected pilot from the new holdout')
+@@ -170 +152 @@
+-    result = prepare(args.source, args.old_labels, args.out, args.per_type, args.exclude_heldout_labels) if args.command == 'prepare' else run(args.prepared, args.out, args.api_config)
++    result = prepare(args.source, args.old_labels, args.out, args.per_type) if args.command == 'prepare' else run(args.prepared, args.out, args.api_config)
+--- a/tests/test_workflow.py
++++ b/tests/test_workflow.py
+@@ -83,21 +82,0 @@
+-    def test_percent_output_converted_to_ratio_without_model_retry(self):
+-        p = {'status': 'ready', 'expression': 'a/b', 'output_unit': 'percent', 'answer': 50,
+-             'operands': {'a': {'fact_id': 'x', 'source_token': '5', 'unit': 'number'},
+-                          'b': {'fact_id': 'x', 'source_token': '10', 'unit': 'number'}}}
+-        answer, status, _, result = validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}])
+-        self.assertEqual(answer, .5)
+-        self.assertEqual(result['output_unit'], 'ratio')
+-        p['expression'] = '(a / b) * 100'
+-        self.assertEqual(validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}])[0], .5)
+-
+-    def test_descriptive_variables_boolean_and_ratio_question(self):
+-        p = {'status': 'ready', 'expression': 'very_long_descriptive_amount > second_amount', 'output_unit': 'number', 'answer': 'yes',
+-             'operands': {'very_long_descriptive_amount': {'fact_id': 'x', 'source_token': '5', 'unit': 'money'},
+-                          'second_amount': {'fact_id': 'x', 'source_token': '10', 'unit': 'money'}}}
+-        answer, status, flags, _ = validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}])
+-        self.assertEqual(answer, 'no')
+-        self.assertIn('model_comparison_corrected', flags)
+-        p['expression'] = 'second_amount - very_long_descriptive_amount'
+-        p['output_unit'] = 'money'
+-        self.assertIsNone(validate_plan(response(p), [{'fact_id': 'x', 'text': '5 of 10'}], question_text='what portion is held here?')[0])
+-
+@@ -133,30 +111,0 @@
+-
+-    def test_headers_align_year_columns_including_numeric_first_column(self):
+-        _, row = self.numeric_data()
+-        row['table'] = [['2011', '2010', '2009'], ['35', '29', '20']]
+-        _, _, units = structured_inputs(row)
+-        table = next(c for c in units if c['locator']['fact_id'] == 'table_1')
+-        self.assertEqual(json.loads(table['text'])['column_labels'], ['2011', '2010', '2009'])
+-        row['table'] = [['net tangible assets', '1900'], ['technology', '23']]
+-        _, _, units = structured_inputs(row)
+-        self.assertNotIn('column_labels', next(c['text'] for c in units if c['locator']['fact_id'] == 'table_1'))
+-
+-    def test_repair_fetches_numeric_only_table_row_missing_from_rankings(self):
+-        data, _ = self.numeric_data()
+-        q = Question.from_row(read_jsonl(data / 'questions.jsonl')[0])
+-        q = replace(q, question='What was the developed technology amount?')
+-        index = CachedIndex.from_paths(data / 'selector.jsonl', data / 'docs.jsonl', enable_raw_fallback=False)
+-        # Simulate lexical retrieval never returning the needed numerical row.
+-        only_header = candidate('header', 'q', 'header')
+-        seen = []
+-        def complete(messages, max_tokens):
+-            evidence = json.loads(messages[1]['content'])['evidence']; seen.append(evidence)
+-            if len(seen) == 1:
+-                return response({'status': 'insufficient'})
+-            self.assertIn('table_1', {e['fact_id'] for e in evidence})
+-            return response({'status': 'ready', 'expression': 'a', 'answer': 1900, 'output_unit': 'money',
+-                             'operands': {'a': {'fact_id': 'table_1', 'source_token': '1900', 'unit': 'money'}}})
+-        with patch('evidence_lab.numeric.retrieve', return_value=({}, [only_header], ['q'], [])):
+-            result = run_numeric(q, index, complete, Budget())
+-        self.assertEqual(result['answer'], 1900)
+-        self.assertEqual(result['repair_rounds'], 1)
